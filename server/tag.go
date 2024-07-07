@@ -1,4 +1,4 @@
-package main
+package server
 
 import (
 	"context"
@@ -8,6 +8,7 @@ import (
 )
 
 type TagServer struct {
+	pb.UnimplementedTagServiceServer
 }
 
 func NewTagServer() *TagServer {
@@ -15,7 +16,7 @@ func NewTagServer() *TagServer {
 }
 
 func (t *TagServer) GetTagList(ctx context.Context, r *pb.GetTagListRequest) (*pb.GetTagListReply, error) {
-	api := blog_api.NewAPI("http://127.0.0.1:8000")
+	api := blog_api.NewAPI("http://127.0.0.1:9000")
 	body, err := api.GetTagList(ctx, r.GetName())
 	if err != nil {
 		return nil, err

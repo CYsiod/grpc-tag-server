@@ -10,7 +10,7 @@ import (
 
 const (
 	APP_Key    = "CYY"
-	APP_SECRET = ""
+	APP_SECRET = "CYY"
 )
 
 type AccessToken struct {
@@ -52,12 +52,13 @@ func (a *API) httpGet(ctx context.Context, path string) ([]byte, error) {
 }
 
 func (a *API) GetTagList(ctx context.Context, name string) ([]byte, error) {
-	accessToken, err := a.getAccessToken(ctx)
-	if err != nil {
-		return nil, err
-	}
+	//accessToken, err := a.getAccessToken(ctx)
+	//if err != nil {
+	//	return nil, err
+	//}
 
-	body, err := a.httpGet(ctx, fmt.Sprintf("%s?token=%s&name=%s", "api/blog/tags", accessToken, name))
+	//body, err := a.httpGet(ctx, fmt.Sprintf("%s?token=%s&name=%s", "api/tags", accessToken, name))
+	body, err := a.httpGet(ctx, fmt.Sprintf("%s?name=%s", "api/tags", name))
 	if err != nil {
 		return nil, err
 	}
